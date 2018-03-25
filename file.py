@@ -2,25 +2,25 @@
 from sys import argv
 script,filename=argv
 
-print "准备擦除 %r." % filename
-print "不需要擦除,请按CTRL-C (^C)。"
-print "需要擦除,请按回车键。"
+print ("准备擦除 %r" % filename)
+print ("不需要擦除,请按CTRL-C (^C)。")
+print ("需要擦除,请按回车键。")
 
-raw_input("?")
+input ("?")
 
-print "打开文件...."
+print ("打开文件....")
 target=open(filename,'w')
 
-print "擦除文件...."
+print ("擦除文件....")
 target.truncate()
 
-print "现在请输入三行文字："
+print ("现在请输入三行文字：")
 
-line1=raw_input("第一行:")
-line2=raw_input("第二行:")
-line3=raw_input("第三行:")
+line1=input("第一行:")
+line2=input("第二行:")
+line3=input("第三行:")
 
-print "正在保存文件...."
+print ("正在保存文件....")
 
 target.write(line1)
 target.write("\n")
@@ -28,7 +28,7 @@ target.write(line2)
 target.write("\n")
 target.write(line3)
 
-print "文件已关闭"
+print ("文件已关闭")
 target.close()
 
 
