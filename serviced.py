@@ -6,15 +6,17 @@ from email.mime.text import MIMEText
 from email.header import Header
 
 def sendsimplemail(warning):
-    sender = 'lizhuhe@163.com'
-    receivers = ['lizhuhe@163.com']
+    sender = 'luke.li@luckypai.com'
+    receivers = ['luke.li@luckypai.com']
     subject = 'Python SMTP测试'
     msg = MIMEText('Python 邮件发送测试','plain','utf-8')
     msg['Subjectubject'] = Header(subject,'utf-8')
-    msg['From'] = Header('root@localhost','utf-8')
+    msg['From'] = Header('Python Check','utf-8')
     msg['To'] = Header('测试','utf-8')
     try:
-        smtp = smtplib.SMTP('localhost')
+        smtp = smtplib.SMTP('mail.51lepai.com')
+        #smtp = smtplib.SMTP_SSL(mail.51lepai.com, 465)
+        #smtp.login('mail_user', 'mail_pass')
         smtp.sendmail(sender,receivers,msg.as_string())
         print('邮件发送成功!')
     except Exception:
