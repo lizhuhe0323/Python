@@ -20,6 +20,7 @@ if __name__ == '__main__':
         fobj = open(ipfile)
         for line in fobj:
             ip = line.strip()
-            remote_comm(ip,oldpass,ch_pwd)
+            t = threading.Thread(target=remote_comm(),args=(ip,oldpass,ch_pwd))
+            t.start()
 
 
