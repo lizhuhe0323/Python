@@ -3,7 +3,7 @@ import paramiko
 
 def remote_comm(host,pwd,comm):
     ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko,AutoAddPolicy())
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(host,username='root',password=pwd)
     stdin,stdout,stderr = ssh.exec_command(comm)
     print (stdout.read()),
@@ -21,4 +21,5 @@ if __name__ == '__main__':
         for line in fobj:
             ip = line.strip()
             remote_comm(ip,oldpass,ch_pwd)
+
 
