@@ -1,5 +1,6 @@
 import sys
 import paramiko
+import threading
 
 def remote_comm(host,pwd,comm):
     ssh = paramiko.SSHClient()
@@ -11,16 +12,17 @@ def remote_comm(host,pwd,comm):
 
 if __name__ == '__main__':
     if len(sys.argv) != 4:
-        print ("Usage: %s ipfile oldpass newpass" % sys.argv[0])
+        print ("Usage: %s ipfile password command" % sys.argv[0])
     else:
         ipfile = sys.argv[1]
         oldpass = sys.argv[2]
-        newpass = sys.argv[3]
-        ch_pwd = "echo %s | passwd --stdin root" % newpass
+        #newpass = sys.argv[3]
+        ch_pwd = sys.argv[3]
+        #ch_pwd = "echo %s | passwd --stdin root" % newpass
         fobj = open(ipfile)
         for line in fobj:
             ip = line.strip()
-            t = threading.Thread(target=remote_comm(),args=(ip,oldpass,ch_pwd))
+            t = threading.Thread(target=remote_comm,args=(ip,oldpass,ch_pwd))
             t.start()
 
 
