@@ -4,7 +4,7 @@ import paramiko
 def remote_comm(host,pwd,comm):
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(host,username='root',password=pwd)
+    ssh.connect(host,username='lizhuhe',password=pwd)
     stdin,stdout,stderr = ssh.exec_command(comm)
     print (stdout.read()),
     print (stderr.read()),
