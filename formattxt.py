@@ -7,9 +7,8 @@ def get_contents():
         contents.append(data)
     return contents
 
-if __name__ == '__main__':
+def format(lines):
     width = 48
-    lines = get_contents()
     print ("*%s*" % ('*' * width))
     for line in lines:
         sp_wid,extra = divmod((width - len(line)),2)
