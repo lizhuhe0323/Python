@@ -5,38 +5,42 @@ from formattxt import format
 
 def new_user():
     while True:
-        user = input("username:")
+        user = input("\033[1;37m%s\033[0m" % "username:")
         if not user:
-            print ("\nUsername can't be empty!\n")
+            print ("\033[0;31m%s\033[0m" % "\nUsername can't be empty!\n")
         else:
             results = mysql.select(user)
             if results:
-                print ("\n%s already exists,please select an other.\n" % user)
+                print ("\033[0;31m%s\033[0m" % "\n%s already exists,please select an other.\n" % user)
             else:
                 while True:
-                    pwd = input("password:")
-                    if pwd:
+                    pwd = input("\033[1;37m%s\033[0m" % "password:")
+                    pwd_again = input("\033[1;37m%s\033[0m" % "password again:")
+                    if pwd and pwd == pwd_again:
                         if len(pwd) >= 8:
                             mysql.insert(user,pwd)
-                            print ("\n%s Register successful\n" % user)
+                            print ("\033[0;31m%s\033[0m" % "\n%s Register successful!\n" % user)
                             break
                         else:
-                            print ("\nPassword can't lease than 8!")
+                            print ("\033[0;31m%s\033[0m" % "\nPassword must not be less than 8!")
                     else:
-                        print ("\nPassword can't be empty!0\n")
+                        if pwd == pwd_again:
+                            print ("\033[0;31m%s\033[0m" % "\nPassword can't be empty!\n")
+                        else:
+                            print ("\033[0;31m%s\033[0m" % "\nPassword mismatch!\n")
                 break
 
 def old_user():
     countnum = 0
     while countnum <= 2:
-        user = input("username:")
-        pwd = getpass.getpass("password:")
+        user = input("\033[1;37m%s\033[0m" % "username:")
+        pwd = getpass.getpass("\033[1;37m%s\033[0m" % "password:")
         results = mysql.select(user)
         if pwd != results:
             countnum += 1
-            print ("\nLogin incorrent.Try again,there are %s chances left.\n" % (3-countnum))
+            print ("\033[0;31m%s\033[0m" % "\nLogin incorrent,there are %s/3 chances left.\n" % (3-countnum))
         else:
-            print ("\n%s Login successful!\n" %user)
+            print ("\033[0;31m%s\033[0m" % "\n%s Login successful!\n" %user)
             os.system("say 'welcome to login,%s'" %user)
             break
 
@@ -49,14 +53,16 @@ def show_menu():
 Please input your choice(0/1/2): """
     while True:
         format(lines)
-        choice = input(prompt).strip()[0]
-        if choice not in '012':
-            print ("\nInvalid choice,Try again.\n")
-            continue
-        if choice == '2':
-            print("\nBye Bye!\n")
-            break
-        CMDs[choice]()
+        try:
+            choice = input(prompt).strip()[0]
+            if choice not in '012':
+                print ("\033[0;31m%s\033[0m" % "\nInvalid choice,try again.\n")
+                continue
+            if choice == '2':
+                break
+            CMDs[choice]()
+        except (ValueError, IndexError):
+            print("\033[0;31m%s\033[0m" % "\nInvalid choice,try again.\n")
 
 
 

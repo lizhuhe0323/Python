@@ -5,8 +5,8 @@ try:
         login.show_menu()
         break
 
-except KeyboardInterrupt:
-    print ("\n\nBye Bye!\n")
+except (KeyboardInterrupt,EOFError):
+    pass
 
 finally:
-    print("Thank you!")
+    print("\033[0;33m%s\033[0m" % "\nBye Bye!\n")
