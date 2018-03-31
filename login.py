@@ -2,7 +2,7 @@ import getpass
 import mysql
 import os
 from formattxt import format
-from Alien import *
+from game import run_game
 
 def new_user():
     while True:
@@ -43,7 +43,7 @@ def old_user():
         else:
             print ("\033[0;31m%s\033[0m" % "\n%s Login successful!\n" %user)
             os.system("say 'welcome to login,%s'" %user)
-            Alien.game.run_game()
+            run_game()
             break
 
 def show_menu():
