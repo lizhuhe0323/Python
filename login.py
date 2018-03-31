@@ -16,9 +16,12 @@ def new_user():
                 while True:
                     pwd = input("password:")
                     if pwd:
-                        mysql.insert(user,pwd)
-                        print ("\n%s Register successful\n" % user)
-                        break
+                        if len(pwd) >= 8:
+                            mysql.insert(user,pwd)
+                            print ("\n%s Register successful\n" % user)
+                            break
+                        else:
+                            print ("\nPassword can't lease than 8!")
                     else:
                         print ("\nPassword can't be empty!0\n")
                 break
@@ -51,6 +54,7 @@ Please input your choice(0/1/2): """
             print ("\nInvalid choice,Try again.\n")
             continue
         if choice == '2':
+            print("\nBye Bye!\n")
             break
         CMDs[choice]()
 
