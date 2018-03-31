@@ -7,3 +7,6 @@ try:
 
 except KeyboardInterrupt:
     print ("\n\nBye Bye!\n")
+
+finally:
+    print("Thank you!")
