@@ -20,6 +20,7 @@ def run_game():
     pygame.mixer.init()
     music = '1.ogg'
     pygame.mixer.music.load(music)
+    pygame.mixer.music.set_volume(0.1)
     pygame.mixer.music.play(loops=0, start=0.0)
 
     while True:
