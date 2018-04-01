@@ -1,29 +1,16 @@
-from ssh import ssh_cmd
+def color(func):
+    def color_font(*args):
+        return "\033[1;31m%s\033[0m" % func(*args)
+    return color_font
 
-def h(n):
-    print('test!')
-    return(n)
+@color
+def say_hi():
+    return "Hello world."
 
-def p(t):
-    a = input('a=')
-    b = input('b=')
-    print ('!!!!')
-    return(t)
+@color
+def greet(name):
+    return "Welcome %s" % name
 
-@ssh_cmd('192.168.1.12', 'Ab@12345','uname -a')
-@h
-@p
-def c():
-    a = 1 
-    b = 2
-    print('a+b')
-
-def d(i):
-    print('4')
-
-def e():
-    print('5')
-
-c()
-
-d(e())
+if __name__ == '__main__':
+    print (say_hi())
+    print (greet("bob"))
