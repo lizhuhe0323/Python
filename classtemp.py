@@ -1,5 +1,9 @@
 class Myclass:
     number = 123456
+
+    def __init__(self):
+        self.data = []
+
     def f(self):
         return 'hello,world'
 
