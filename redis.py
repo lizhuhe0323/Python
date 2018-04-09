@@ -1,7 +1,7 @@
 import redis
 
 redis_config = {
-    "host": "192.168.189.100",
+    "host": "172.16.43.129",
     "port": 6379
 }
 # redis连接对象
