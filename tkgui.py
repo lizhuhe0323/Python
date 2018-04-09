@@ -7,7 +7,7 @@ from login import *
 top = tkinter.Tk()
 top.title('1944')
 top.geometry('500x300+500+200')
-top.iconbitmap('spider_128px_1169260_easyicon.net.ico')
+#top.iconbitmap('spider_128px_1169260_easyicon.net.ico')
 hello =tkinter.Label(top,text='1944打飞机游戏')
 hello.pack()
 
