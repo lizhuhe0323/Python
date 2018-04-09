@@ -1,5 +1,6 @@
 from socket import *
 import threading
+from time import ctime
 
 address='127.0.0.1'     #监听哪些网络  127.0.0.1是监听本机 0.0.0.0是监听整个网络
 port=1234             #监听自己的哪个端口
@@ -14,7 +15,7 @@ def tcplink(sock,addr):
         recvdata=clientsock.recv(buffsize).decode('utf-8')
         if recvdata=='exit' or not recvdata:
             break
-        senddata=recvdata+'from sever'
+        senddata=recvdata+' '+ctime()
         clientsock.send(senddata.encode())
     clientsock.close()
 
